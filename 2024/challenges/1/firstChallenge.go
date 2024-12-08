@@ -1,4 +1,4 @@
-package challenges
+package firstchallenge
 
 import (
 	"bufio"
