@@ -88,6 +88,8 @@ func checkReportIsSafe(report []int) bool {
 	return increasing != decreasing
 }
 
-func SecondChallenge() int {
-	return getAndCheckReports()
+func SecondChallenge() {
+	result := getAndCheckReports()
+
+	fmt.Printf("Second challenge answer: %.d\n", result)
 }

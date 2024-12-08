@@ -18,27 +18,6 @@ func removeElementByIndex(slice []int, index int) []int {
 	return append(slice[:index], slice[index+1:]...)
 }
 
-func FirstChallenge() float64 {
-	var leftIndex int
-	var rightIndex int
-	var distance float64
-	var result float64
-
-	left, right := getLeftRight()
-	listSize := len(left)
-
-	for i := 0; i < listSize; i++ {
-		distance = findSmallestNumber(left, right, &leftIndex, &rightIndex)
-
-		left = removeElementByIndex(left, leftIndex)
-		right = removeElementByIndex(right, rightIndex)
-
-		result += distance
-	}
-
-	return result
-}
-
 func getLeftRight() ([]int, []int) {
 	var numbers []string
 	var left []int
@@ -96,4 +75,25 @@ func findSmallestNumber(left []int, right []int, leftIndex *int, rightIndex *int
 	}
 
 	return math.Abs(float64(leftMinValue) - float64(rightMinValue))
+}
+
+func FirstChallenge() {
+	var leftIndex int
+	var rightIndex int
+	var distance float64
+	var result float64
+
+	left, right := getLeftRight()
+	listSize := len(left)
+
+	for i := 0; i < listSize; i++ {
+		distance = findSmallestNumber(left, right, &leftIndex, &rightIndex)
+
+		left = removeElementByIndex(left, leftIndex)
+		right = removeElementByIndex(right, rightIndex)
+
+		result += distance
+	}
+
+	fmt.Printf("First challenge answer: %.0f\n", result)
 }
