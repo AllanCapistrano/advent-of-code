@@ -60,12 +60,12 @@ func checkReportIsSafe(report []int) bool {
 	decreasing := false
 
 	for i := 0; i < len(report)-1; i++ {
+		if checkValidLevelsDiffer(report[i], report[i+1]) || report[i] == report[i+1] {
+			return false
+		}
+
 		if report[i] < report[i+1] {
 			decreasing = true
-
-			if math.Abs(float64(report[i])-float64(report[i+1])) > 3 {
-				return false
-			}
 
 			continue
 		}
@@ -73,19 +73,15 @@ func checkReportIsSafe(report []int) bool {
 		if report[i] > report[i+1] {
 			increasing = true
 
-			if math.Abs(float64(report[i])-float64(report[i+1])) > 3 {
-				return false
-			}
-
 			continue
-		}
-
-		if report[i] == report[i+1] {
-			return false
 		}
 	}
 
 	return increasing != decreasing
+}
+
+func checkValidLevelsDiffer(currentLevel int, nextLevel int) bool {
+	return math.Abs(float64(currentLevel)-float64(nextLevel)) > 3
 }
 
 func SecondChallenge() {
